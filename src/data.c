@@ -3,7 +3,7 @@
 #include "init.h"
 
 #define CHAR_MAX 31      // MAX LENGTH OF CHAR ARRAY
-#define DATA_MAX 99   // MAXIMUM SIZE OF DATABASE
+#define DATA_MAX 100   // MAXIMUM SIZE OF DATABASE
 
 int customer_index = 0;     // CUSTOMER DATABASE ARRAY INDEX
 int product_index = 0;     // PRODUCT DATABASE ARRAY INDEX
