@@ -73,7 +73,7 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
         printf("Produkt ID: ");
         scanf("%d", &id);
 
-        for (int i = 0; i <= DATA_MAX; i++) {
+        for (int i = 0; i < DATA_MAX; i++) {
             if (product_database[i].id == id && id != 0) {
                 id = i;
                 is_valid = 0;
@@ -97,7 +97,7 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
         int id = 0;
         scanf("%d", &id);
 
-        for (int i = 0; i <= DATA_MAX; i++) {
+        for (int i = 0; i < DATA_MAX; i++) {
             if (customer_database[i].id == id && id != 0) {
                 id = i;
                 is_valid = 0;
@@ -115,7 +115,7 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
         /*######################################################################*/
 
         case 5:     // PRINT LIST OF ALL PRODUCTS
-        for (int i = 0; i <= DATA_MAX; i++) {
+        for (int i = 0; i < DATA_MAX; i++) {
             if (product_database[i].id != 0) {
                 printf("ID: %d\n", product_database[i].id);
                 printf("NAME: %s\n", product_database[i].name);
@@ -129,7 +129,7 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
         /*######################################################################*/
 
         case 6:     // PRINT LIST OF ALL CUSTOMERS
-        for (int i = 0; i <= DATA_MAX; i++) {
+        for (int i = 0; i < DATA_MAX; i++) {
             if (customer_database[i].id != 0) {
                 printf("ID: %d\n", customer_database[i].id);
                 printf("VORNAME: %s\n", customer_database[i].first_name);
