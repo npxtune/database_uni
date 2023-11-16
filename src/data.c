@@ -94,7 +94,6 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
 
         case 4:     // PRINT CUSTOMER INFO
         printf("Kunden ID: ");
-        int id = 0;
         scanf("%d", &id);
 
         for (int i = 0; i < DATA_MAX; i++) {
