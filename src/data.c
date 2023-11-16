@@ -2,63 +2,63 @@
 #include "data.h"
 #include "init.h"
 
-#define MAX 31      // MAX LENGTH OF CHAR ARRAY
+#define CHAR_MAX 31      // MAX LENGTH OF CHAR ARRAY
 #define DATA_MAX 99   // MAXIMUM SIZE OF DATABASE
 
-int cust_index = 0;     // CUSTOMER DATABASE ARRAY INDEX
-int prod_index = 0;     // PRODUCT DATABASE ARRAY INDEX
+int customer_index = 0;     // CUSTOMER DATABASE ARRAY INDEX
+int product_index = 0;     // PRODUCT DATABASE ARRAY INDEX
 
 typedef struct CUSTOMER {       // CUSTOMER DATABASE INIT -> DATABASE IS GLOBAL
         int id;
-        char first_name[MAX];
-        char last_name[MAX];
+        char first_name[CHAR_MAX];
+        char last_name[CHAR_MAX];
     }   customer;
 customer customer_database[DATA_MAX];
 
 typedef struct PRODUCT {        // PRODUCT DATABASE INIT -> DATABASE IS GLOBAL
         int id;
-        char name[MAX];
+        char name[CHAR_MAX];
         double price;
         unsigned short amount;
     }   product;
 product product_database[DATA_MAX];
 
-int data_handler(int id_arg) {      // HANDLES DATA, MODIFIES AND PRINTS IT
+int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
     int id = 0, is_valid = -1;
     double price = 0;
     unsigned short amount = 0;
 
-    switch (id_arg) {       // SWITCH STATEMENT FOR ADDING OR PRINTING DATA
+    switch (id_argument) {       // SWITCH STATEMENT FOR ADDING OR PRINTING DATA
 
         /*######################################################################*/
 
         case 1:     // ADD PRODUCT TO PRODUCT DATABASE
         printf("ID: "), scanf("%d", &id);
-        product_database[prod_index].id = id;
+        product_database[product_index].id = id;
 
         printf("Name: ");
-        scanf("%s", product_database[prod_index].name);
+        scanf("%s", product_database[product_index].name);
 
         printf("Preis: "), scanf("%lf", &price);
-        product_database[prod_index].price = price;
+        product_database[product_index].price = price;
         
         printf("Anzahl: "), scanf("%hu", &amount);
-        product_database[prod_index].amount = amount;
-        prod_index += 1;   // INCREMENT DATABASE ARRAY VALUE
+        product_database[product_index].amount = amount;
+        product_index += 1;   // INCREMENT DATABASE ARRAY VALUE
         break;
 
         /*######################################################################*/
 
         case 2:     // ADD CUSTOMER TO CUSTOMER DATABASE
         printf("ID: "), scanf("%d", &id);
-        customer_database[cust_index].id = id;
+        customer_database[customer_index].id = id;
 
         printf("Vorname: ");
-        scanf("%s", customer_database[cust_index].first_name);
+        scanf("%s", customer_database[customer_index].first_name);
 
         printf("Nachname: ");
-        scanf("%s", customer_database[cust_index].last_name);
-        cust_index += 1;   // INCREMENT DATABASE ARRAY VALUE
+        scanf("%s", customer_database[customer_index].last_name);
+        customer_index += 1;   // INCREMENT DATABASE ARRAY VALUE
         break;
 
         /*######################################################################*/

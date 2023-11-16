@@ -4,15 +4,15 @@
 #include <stdio.h>
 #define clrscr() printf("\e[1;1H\e[2J") // CLEAR TERMINAL - only works on *nix systems
 
-void eval_input(int inp) {   // EVALUATE USER INPUT AND CALL FUNCTION WITH ITS CORRECT ID
-    switch (inp) {
+void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WITH ITS CORRECT ID
+    switch (id_argument) {
         
         /*######################################################################*/
 
         case 1: // NEW PRODUCT
         clrscr();
         printf("%s","**********************\n* WWS Produkteingabe *\n**********************\n");
-        data_handler(inp);
+        data_handler(id_argument);
         break;
 
         /*######################################################################*/
@@ -20,7 +20,7 @@ void eval_input(int inp) {   // EVALUATE USER INPUT AND CALL FUNCTION WITH ITS C
         case 2: // NEW CUSTOMER
         clrscr();
         printf("%s","**********************\n* WWS Kundeneingabe *\n**********************\n");
-        data_handler(inp);
+        data_handler(id_argument);
         break;
 
         /*######################################################################*/
@@ -28,7 +28,7 @@ void eval_input(int inp) {   // EVALUATE USER INPUT AND CALL FUNCTION WITH ITS C
         case 3: // PRINT PRODUCT
         clrscr();
         printf("%s","**********************\n* WWS Produktausgabe *\n**********************\n");
-        if (data_handler(inp) == -1) {
+        if (data_handler(id_argument) == -1) {
             printf("ERROR -1\t ID des Produkt exestiert nicht!\n");
             printf("\n\nDrücken Sie ENTER...\t");
             while (getchar() != '\n');
@@ -41,7 +41,7 @@ void eval_input(int inp) {   // EVALUATE USER INPUT AND CALL FUNCTION WITH ITS C
         case 4: // PRINT CUSTOMER
         clrscr();
         printf("%s","**********************\n* WWS Kundenausgabe *\n**********************\n");
-        if (data_handler(inp) == -1) {
+        if (data_handler(id_argument) == -1) {
             printf("ERROR -1\t ID des Kunden exestiert nicht!\n");
             printf("\n\nDrücken Sie ENTER...\t");
             while (getchar() != '\n');
