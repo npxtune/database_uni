@@ -12,7 +12,12 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         case 1: // NEW PRODUCT
         clrscr();
         printf("%s","**********************\n* WWS Produkteingabe *\n**********************\n");
-        data_handler(id_argument);
+        if (data_handler(id_argument) == -2) {
+            printf("\nERROR -2:\nID des Produkt darf nicht '0' sein!\n");
+            printf("\nDrücken Sie ENTER...\t");
+            while (getchar() != '\n');
+            getchar();
+        }
         break;
 
         /*######################################################################*/
@@ -20,7 +25,12 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         case 2: // NEW CUSTOMER
         clrscr();
         printf("%s","**********************\n* WWS Kundeneingabe *\n**********************\n");
-        data_handler(id_argument);
+        if (data_handler(id_argument) == -2) {
+            printf("\nERROR -2:\nID des Kunden darf nicht '0' sein!\n");
+            printf("\nDrücken Sie ENTER...\t");
+            while (getchar() != '\n');
+            getchar();
+        }
         break;
 
         /*######################################################################*/
@@ -29,11 +39,11 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         clrscr();
         printf("%s","**********************\n* WWS Produktausgabe *\n**********************\n");
         if (data_handler(id_argument) == -1) {
-            printf("ERROR -1\t ID des Produkt exestiert nicht!\n");
-            printf("\n\nDrücken Sie ENTER...\t");
-            while (getchar() != '\n');
-            getchar();
+            printf("\nERROR -1:\nID des Produkt exestiert nicht!\n");
         }
+        printf("\n\nDrücken Sie ENTER...\t");
+        while (getchar() != '\n');
+        getchar();
         break;
 
         /*######################################################################*/
@@ -42,23 +52,35 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         clrscr();
         printf("%s","**********************\n* WWS Kundenausgabe *\n**********************\n");
         if (data_handler(id_argument) == -1) {
-            printf("ERROR -1\t ID des Kunden exestiert nicht!\n");
-            printf("\n\nDrücken Sie ENTER...\t");
-            while (getchar() != '\n');
-            getchar();
+            printf("\nERROR -1:\nID des Kunden exestiert nicht!\n");
         }
+        printf("\n\nDrücken Sie ENTER...\t");
+        while (getchar() != '\n');
+        getchar();
         break;
 
         /*######################################################################*/
 
         case 5: // PRINT LIST OF PRODUCTS
-        // TODO
+        // TODO: FORMATTING OF CHARTS
+        clrscr();
+        printf("%s","**********************\n* WWS Produktausgabe *\n**********************\n");
+        data_handler(id_argument);
+        printf("\n\nDrücken Sie ENTER...\t");
+        while (getchar() != '\n');
+        getchar();
         break;
 
         /*######################################################################*/
 
         case 6: // PRINT LIST OF CUSTOMERS
-        // TODO
+        // TODO: FORMATTING OF CHARTS
+        clrscr();
+        printf("%s","**********************\n* WWS Kundenausgabe *\n**********************\n");
+        data_handler(id_argument);
+        printf("\n\nDrücken Sie ENTER...\t");
+        while (getchar() != '\n');
+        getchar();
         break;
 
         /*######################################################################*/
@@ -71,7 +93,6 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         /*######################################################################*/
 
         default:
-        init();
         break;
     }
     init();     // RETURN TO CLI INTERFACE

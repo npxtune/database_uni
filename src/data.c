@@ -34,6 +34,9 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
 
         case 1:     // ADD PRODUCT TO PRODUCT DATABASE
         printf("ID: "), scanf("%d", &id);
+        if (id == 0) {
+            return -2;  // ID DARF NICHT 0 SEIN!
+        }
         product_database[product_index].id = id;
 
         printf("Name: ");
@@ -51,6 +54,9 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
 
         case 2:     // ADD CUSTOMER TO CUSTOMER DATABASE
         printf("ID: "), scanf("%d", &id);
+        if (id == 0) {
+            return -2;  // ID DARF NICHT 0 SEIN!
+        }
         customer_database[customer_index].id = id;
 
         printf("Vorname: ");
@@ -67,8 +73,8 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
         printf("Produkt ID: ");
         scanf("%d", &id);
 
-        for (int i = 0; i < DATA_MAX; i++) {
-            if (product_database[i].id == id) {
+        for (int i = 0; i <= DATA_MAX; i++) {
+            if (product_database[i].id == id && id != 0) {
                 id = i;
                 is_valid = 0;
                 break;
@@ -79,22 +85,20 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
         }
         //printf("ID: %d\n", product_database[id].id);      We kinda know the ID since we input it so...
         printf("NAME: %s\n", product_database[id].name);
-        printf("PREIS: €%.2lf\n", product_database[id].price);
+        printf("PREIS: %.2lf €\n", product_database[id].price);
         printf("ANZAHL: %hu\n", product_database[id].amount);
-        printf("INSGESAMT: €%lf\n", product_database[id].price*(double)product_database[id].amount);
-        printf("\n\nDrücken Sie ENTER...\t");
-        while (getchar() != '\n');
-        getchar();
+        printf("INSGESAMT: %.2lf €\n", product_database[id].price*(double)product_database[id].amount);
         break;
 
         /*######################################################################*/
 
         case 4:     // PRINT CUSTOMER INFO
         printf("Kunden ID: ");
+        int id = 0;
         scanf("%d", &id);
 
-        for (int i = 0; i < DATA_MAX; i++) {
-            if (customer_database[i].id == id) {
+        for (int i = 0; i <= DATA_MAX; i++) {
+            if (customer_database[i].id == id && id != 0) {
                 id = i;
                 is_valid = 0;
                 break;
@@ -106,9 +110,32 @@ int data_handler(int id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
         //printf("ID: %d\n", customer_database[id].id);     We kinda know the ID since we input it so...
         printf("VORNAME: %s\n", customer_database[id].first_name);
         printf("NACHNAME: %s\n", customer_database[id].last_name);
-        printf("\n\nDrücken Sie ENTER...\t");
-        while (getchar() != '\n');
-        getchar();
+        break;
+
+        /*######################################################################*/
+
+        case 5:     // PRINT LIST OF ALL PRODUCTS
+        for (int i = 0; i <= DATA_MAX; i++) {
+            if (product_database[i].id != 0) {
+                printf("ID: %d\n", product_database[i].id);
+                printf("NAME: %s\n", product_database[i].name);
+                printf("PREIS: %.2lf €\n", product_database[i].price);
+                printf("ANZAHL: %hu\n", product_database[i].amount);
+                printf("INSGESAMT: %.2lf €\n\n", product_database[i].price*(double)product_database[id].amount);
+            }
+        }
+        break;
+
+        /*######################################################################*/
+
+        case 6:     // PRINT LIST OF ALL CUSTOMERS
+        for (int i = 0; i <= DATA_MAX; i++) {
+            if (customer_database[i].id != 0) {
+                printf("ID: %d\n", customer_database[i].id);
+                printf("VORNAME: %s\n", customer_database[i].first_name);
+                printf("NACHNAME: %s\n\n", customer_database[i].last_name);
+            }
+        }
         break;
 
         /*######################################################################*/

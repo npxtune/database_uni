@@ -6,13 +6,16 @@
 void init() {   // INIT CLI INTERFACE
     int input = 0;
     clrscr();
-    printf("%s","*************************\n* WWS Produktmanagement *\n* v.2.0-linuxppc64le    *\n*************************\n");
+    printf("%s","*************************\n* WWS Produktmanagement *\n*************************\n");
     printf("Optionen:\n");
     printf("1: Neues Produkt eingeben\n");
     printf("2: Neuen Kunden eingeben\n");
     printf("3: Produkt ausgeben\n");
     printf("4: Kunde ausgeben\n");
+    printf("5: Alle Produkte ausgeben\n");
+    printf("6: Alle Kunden ausgeben\n");
     printf("7: Beenden\n");
+    printf("--------------------------\n");
     printf("Auswahl: "), scanf("%d",&input);
     eval_input(input);
 }
