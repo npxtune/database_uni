@@ -6,7 +6,7 @@
 #include "init.h"
 #define clrscr() printf("\e[1;1H\e[2J") // CLEAR TERMINAL - only works on *nix systems
 
-void eval_input(int32_t id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WITH ITS CORRECT ID
+void eval_input(const int32_t id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WITH ITS CORRECT ID
     switch (id_argument) {
         
         /*######################################################################*/
@@ -30,7 +30,7 @@ void eval_input(int32_t id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTIO
         printf("%s","**********************\n* WWS Kundeneingabe *\n**********************\n");
 
         if (data_handler(id_argument) == false) {  // ERROR CASE CHECK
-            printf("\nERROR -2:\nProduktinformation ist illegal!\n");
+            printf("\nERROR -2:\nKundeninformation ist illegal!\n");
             printf("\nDrücken Sie ENTER...\t");
             while (getchar() != '\n') {}
             getchar();
@@ -102,7 +102,7 @@ void eval_input(int32_t id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTIO
 
         /*######################################################################*/
 
-        default:
+        default:    // Just skip to the end which calls the cli interface
         break;
     }
     init();     // RETURN TO CLI INTERFACE

@@ -25,7 +25,7 @@ typedef struct PRODUCT {        // PRODUCT DATABASE INIT -> DATABASE IS GLOBAL
     }   product;
 product product_database[DATA_MAX];
 
-bool data_handler(int32_t id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
+bool data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
     bool is_valid = false;
     int32_t id = 0, amount = 0;
     double price = 0;
