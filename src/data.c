@@ -6,26 +6,25 @@
 #define CHAR_MAX 31      // MAX LENGTH OF CHAR ARRAY
 #define DATA_MAX 100   // MAXIMUM SIZE OF DATABASE
 
+typedef struct struct_customer { // CUSTOMER DATABASE STRUCT -> GLOBAL
+    uint64_t id;
+    char first_name[CHAR_MAX];
+    char last_name[CHAR_MAX];
+} customer;
+customer customer_database[DATA_MAX];
+
+typedef struct struct_product { // PRODUCT DATABASE STRUCT -> GLOBAL
+    uint64_t id;
+    char name[CHAR_MAX];
+    double price;
+    uint32_t amount;
+} product;
+product product_database[DATA_MAX];
+
+uint32_t customer_index = 0; // CUSTOMER DATABASE ARRAY INDEX
+uint32_t product_index = 0;  // PRODUCT DATABASE ARRAY INDEX
+
 bool data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
-
-    typedef struct struct_customer {       // CUSTOMER DATABASE STRUCT
-        uint64_t id;
-        char first_name[CHAR_MAX];
-        char last_name[CHAR_MAX];
-    }   customer;
-    customer customer_database[DATA_MAX];
-
-    typedef struct struct_product {        // PRODUCT DATABASE STRUCT
-        uint64_t id;
-        char name[CHAR_MAX];
-        double price;
-        uint32_t amount;
-    }   product;
-    product product_database[DATA_MAX];
-
-    uint32_t customer_index = 0;     // CUSTOMER DATABASE ARRAY INDEX
-    uint32_t product_index = 0;     // PRODUCT DATABASE ARRAY INDEX
-
     bool is_valid = false;
     int32_t id = 0, amount = 0;
     double price = 0;
