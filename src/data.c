@@ -3,29 +3,29 @@
 #include <stdbool.h>
 #include "data.h"
 #include "init.h"
-
 #define CHAR_MAX 31      // MAX LENGTH OF CHAR ARRAY
 #define DATA_MAX 100   // MAXIMUM SIZE OF DATABASE
 
-int customer_index = 0;     // CUSTOMER DATABASE ARRAY INDEX
-int product_index = 0;     // PRODUCT DATABASE ARRAY INDEX
+bool data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
 
-typedef struct CUSTOMER {       // CUSTOMER DATABASE INIT -> DATABASE IS GLOBAL
+    typedef struct struct_customer {       // CUSTOMER DATABASE STRUCT
         uint64_t id;
         char first_name[CHAR_MAX];
         char last_name[CHAR_MAX];
     }   customer;
-customer customer_database[DATA_MAX];
+    customer customer_database[DATA_MAX];
 
-typedef struct PRODUCT {        // PRODUCT DATABASE INIT -> DATABASE IS GLOBAL
+    typedef struct struct_product {        // PRODUCT DATABASE STRUCT
         uint64_t id;
         char name[CHAR_MAX];
         double price;
         uint32_t amount;
     }   product;
-product product_database[DATA_MAX];
+    product product_database[DATA_MAX];
 
-bool data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
+    uint32_t customer_index = 0;     // CUSTOMER DATABASE ARRAY INDEX
+    uint32_t product_index = 0;     // PRODUCT DATABASE ARRAY INDEX
+
     bool is_valid = false;
     int32_t id = 0, amount = 0;
     double price = 0;
@@ -78,7 +78,7 @@ bool data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES AN
         printf("Produkt ID: ");
         scanf("%d", &id);
 
-        for (int i = 0; i < DATA_MAX; i++) {
+        for (int32_t i = 0; i < DATA_MAX; i++) {
             if (product_database[i].id == id && id != 0) {
                 id = i;
                 is_valid = true;
@@ -101,7 +101,7 @@ bool data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES AN
         printf("Kunden ID: ");
         scanf("%d", &id);
 
-        for (int i = 0; i < DATA_MAX; i++) {
+        for (int32_t i = 0; i < DATA_MAX; i++) {
             if (customer_database[i].id == id && id != 0) {
                 id = i;
                 is_valid = true;
@@ -119,7 +119,7 @@ bool data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES AN
         /*######################################################################*/
 
         case 5:     // PRINT LIST OF ALL PRODUCTS
-        for (int i = 0; i < DATA_MAX; i++) {
+        for (int32_t i = 0; i < DATA_MAX; i++) {
             if (product_database[i].id != 0) {
                 printf("ID: %ld\n", product_database[i].id);
                 printf("NAME: %s\n", product_database[i].name);
@@ -133,7 +133,7 @@ bool data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES AN
         /*######################################################################*/
 
         case 6:     // PRINT LIST OF ALL CUSTOMERS
-        for (int i = 0; i < DATA_MAX; i++) {
+        for (int32_t i = 0; i < DATA_MAX; i++) {
             if (customer_database[i].id != 0) {
                 printf("ID: %ld\n", customer_database[i].id);
                 printf("VORNAME: %s\n", customer_database[i].first_name);
