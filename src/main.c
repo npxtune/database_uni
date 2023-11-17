@@ -1,6 +1,7 @@
+#include <stdint.h>
 #include "init.h"
 
-int main(void) {
+int32_t main(void) {
     init();         // MAIN RUNTIME
     return 0;
 }

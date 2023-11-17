@@ -1,10 +1,12 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
 #include "eval_input.h"
 #include "data.h"
 #include "init.h"
-#include <stdio.h>
 #define clrscr() printf("\e[1;1H\e[2J") // CLEAR TERMINAL - only works on *nix systems
 
-void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WITH ITS CORRECT ID
+void eval_input(int32_t id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WITH ITS CORRECT ID
     switch (id_argument) {
         
         /*######################################################################*/
@@ -12,10 +14,11 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         case 1: // NEW PRODUCT
         clrscr();
         printf("%s","**********************\n* WWS Produkteingabe *\n**********************\n");
-        if (data_handler(id_argument) == -2) {
-            printf("\nERROR -2:\nID des Produkt darf nicht '0' sein!\n");
+
+        if (data_handler(id_argument) == false) {  // ERROR CASE CHECK
+            printf("\nERROR -2:\nProduktinformation ist illegal!\n");
             printf("\nDrücken Sie ENTER...\t");
-            while (getchar() != '\n');
+            while (getchar() != '\n') {}
             getchar();
         }
         break;
@@ -25,10 +28,11 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         case 2: // NEW CUSTOMER
         clrscr();
         printf("%s","**********************\n* WWS Kundeneingabe *\n**********************\n");
-        if (data_handler(id_argument) == -2) {
-            printf("\nERROR -2:\nID des Kunden darf nicht '0' sein!\n");
+
+        if (data_handler(id_argument) == false) {  // ERROR CASE CHECK
+            printf("\nERROR -2:\nProduktinformation ist illegal!\n");
             printf("\nDrücken Sie ENTER...\t");
-            while (getchar() != '\n');
+            while (getchar() != '\n') {}
             getchar();
         }
         break;
@@ -38,11 +42,13 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         case 3: // PRINT PRODUCT
         clrscr();
         printf("%s","**********************\n* WWS Produktausgabe *\n**********************\n");
-        if (data_handler(id_argument) == -1) {
+        
+        if (data_handler(id_argument) == false) {  // ERROR CASE CHECK
             printf("\nERROR -1:\nID des Produkt exestiert nicht!\n");
         }
+
         printf("\n\nDrücken Sie ENTER...\t");
-        while (getchar() != '\n');
+        while (getchar() != '\n') {}
         getchar();
         break;
 
@@ -51,11 +57,13 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         case 4: // PRINT CUSTOMER
         clrscr();
         printf("%s","**********************\n* WWS Kundenausgabe *\n**********************\n");
-        if (data_handler(id_argument) == -1) {
+
+        if (data_handler(id_argument) == false) {  // ERROR CASE CHECK
             printf("\nERROR -1:\nID des Kunden exestiert nicht!\n");
         }
+
         printf("\n\nDrücken Sie ENTER...\t");
-        while (getchar() != '\n');
+        while (getchar() != '\n') {}
         getchar();
         break;
 
@@ -65,9 +73,10 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         // TODO: FORMATTING OF CHARTS
         clrscr();
         printf("%s","**********************\n* WWS Produktausgabe *\n**********************\n");
+
         data_handler(id_argument);
         printf("\n\nDrücken Sie ENTER...\t");
-        while (getchar() != '\n');
+        while (getchar() != '\n') {}
         getchar();
         break;
 
@@ -77,9 +86,10 @@ void eval_input(int id_argument) {   // EVALUATE USER INPUT AND CALL FUNCTION WI
         // TODO: FORMATTING OF CHARTS
         clrscr();
         printf("%s","**********************\n* WWS Kundenausgabe *\n**********************\n");
+        
         data_handler(id_argument);
         printf("\n\nDrücken Sie ENTER...\t");
-        while (getchar() != '\n');
+        while (getchar() != '\n') {}
         getchar();
         break;
 
