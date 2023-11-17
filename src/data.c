@@ -8,14 +8,14 @@
 
 bool data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES AND PRINTS IT
 
-    typedef struct CUSTOMER {       // CUSTOMER DATABASE INIT -> DATABASE IS GLOBAL
+    typedef struct struct_customer {       // CUSTOMER DATABASE STRUCT
         uint64_t id;
         char first_name[CHAR_MAX];
         char last_name[CHAR_MAX];
     }   customer;
     customer customer_database[DATA_MAX];
 
-    typedef struct PRODUCT {        // PRODUCT DATABASE INIT -> DATABASE IS GLOBAL
+    typedef struct struct_product {        // PRODUCT DATABASE STRUCT
         uint64_t id;
         char name[CHAR_MAX];
         double price;
