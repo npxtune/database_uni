@@ -1,6 +1,10 @@
 # cmake folder
 .cache/*
 build/*
+cmake-build-debug/
+.idea/workspace.xml
+.DS_Storage
+.idea/.DS_Storage
 
 # Prerequisites
 *.d
