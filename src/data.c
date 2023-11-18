@@ -151,19 +151,19 @@ int8_t data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES 
 
         case 5:     // PRINT LIST OF ALL PRODUCTS
             for (int32_t i = 0; i < product_index; i+=CHART_PAGE_MAX) {
-                for (int j = 0; j < CHART_PAGE_MAX; j++) {
+                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
                     printf("| %10lu ", product_database[j].id);
                 }   printf("\n");
 
-                for (int j = 0; j < CHART_PAGE_MAX; j++) {
+                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
                     printf("| %10s ", product_database[j].name);
                 }   printf("\n");
 
-                for (int j = 0; j < CHART_PAGE_MAX; j++) {
+                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
                     printf("| %8.2lf € ", product_database[j].price);
                 }   printf("\n");
 
-                for (int j = 0; j < CHART_PAGE_MAX; j++) {
+                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
                     printf("| %10u ", product_database[j].amount);
                 }   printf("\n");
 
@@ -186,11 +186,11 @@ int8_t data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES 
                     printf("| %10lu ", customer_database[j].id);
                 }   printf("\n");
 
-                for (int j = 0; j < CHART_PAGE_MAX; j++) {
+                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
                     printf("| %10s ", customer_database[j].first_name);
                 }   printf("\n");
 
-                for (int j = 0; j < CHART_PAGE_MAX; j++) {
+                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
                     printf("| %10s ", customer_database[j].last_name);
                 }   printf("\n");
 
