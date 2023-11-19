@@ -4,7 +4,7 @@
 #include "eval_input.h"
 #define clrscr() printf("\e[1;1H\e[2J") // CLEAR TERMINAL - only works on *nix systems
 
-void init(void) {   // INIT CLI INTERFACE
+void init(void) {   // INIT CLI
     int32_t input = 0;
     clrscr();
     printf("%s","*************************\n* WWS Produktmanagement *\n*************************\n");

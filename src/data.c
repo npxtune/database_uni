@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <math.h>
 #include "data.h"
-#include "init.h"
+
+#define clrscr() printf("\e[1;1H\e[2J") // CLEAR TERMINAL - only works on *nix systems
 #define CHAR_MAX 31      // MAX LENGTH OF CHAR ARRAY
 #define DATA_MAX 100   // MAXIMUM SIZE OF DATABASE
 #define CHART_PAGE_MAX 5    // MAX VALUES PRINTED FOR A PAGE
-/*------------------------------------------------------------------------------------------------
+/*-------------------------------------------------------------------------------------------------------------
                                      GLOBAL STRUCTS AND VALUES
                                            DEFINED HERE
-------------------------------------------------------------------------------------------------*/
+---------------------------------------------------------------------------------------------------------------*/
 typedef struct struct_customer { // CUSTOMER DATABASE STRUCT -> GLOBAL
     uint64_t id;
     char first_name[CHAR_MAX];
@@ -26,7 +26,7 @@ typedef struct struct_product { // PRODUCT DATABASE STRUCT -> GLOBAL
 } product;
 product product_database[DATA_MAX];
 
-/*------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------*/
 
 uint32_t customer_index = 0; // CUSTOMER DATABASE ARRAY INDEX
 uint32_t product_index = 0;  // PRODUCT DATABASE ARRAY INDEX
@@ -57,7 +57,7 @@ int8_t data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES 
     bool is_valid = false;
     int64_t id = 0;
     int32_t amount = 0;
-    double price = 0;
+    const double page_check = CHART_PAGE_MAX + 0.1;
 
     switch (id_argument) {       // SWITCH STATEMENT FOR ADDING OR PRINTING DATA
 
@@ -77,7 +77,7 @@ int8_t data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES 
 
             printf("Anzahl: "), scanf("%d", &amount);
             if (amount <= 0) {
-                return false;  // AMOUNT CANNOT BE UNDER OR 0!
+                return -2;  // AMOUNT CANNOT BE UNDER OR 0!
             }
             product_database[product_index].amount = amount;
 
@@ -150,26 +150,31 @@ int8_t data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES 
         /*------------------------------------------------------------------------------------------------*/
 
         case 5:     // PRINT LIST OF ALL PRODUCTS
+
             for (int32_t i = 0; i < product_index; i+=CHART_PAGE_MAX) {
-                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
+                clrscr();
+                printf("%s","**********************\n* WWS Produktausgabe *\n**********************\n");
+                printf("\n");
+
+                for (int32_t j = 0+i; j < CHART_PAGE_MAX+i; j++) {
                     printf("| %10lu ", product_database[j].id);
-                }   printf("\n");
+                }   printf("|\n");
 
-                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
+                for (int32_t j = 0+i; j < CHART_PAGE_MAX+i; j++) {
                     printf("| %10s ", product_database[j].name);
-                }   printf("\n");
+                }   printf("|\n");
 
-                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
+                for (int32_t j = 0+i; j < CHART_PAGE_MAX+i; j++) {
                     printf("| %8.2lf € ", product_database[j].price);
-                }   printf("\n");
+                }   printf("|\n");
 
-                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
+                for (int32_t j = 0+i; j < CHART_PAGE_MAX+i; j++) {
                     printf("| %10u ", product_database[j].amount);
-                }   printf("\n");
+                }   printf("|\n");
 
-                printf("Seite %d von %d\n", i, (int32_t)round(product_index / CHART_PAGE_MAX));
+                printf("\nSeite %d von %d\n", i / CHART_PAGE_MAX, (int32_t)(product_index / page_check));
 
-                if (product_index > CHART_PAGE_MAX) {
+                if (i+CHART_PAGE_MAX < product_index) {
                     printf("\nDrücken Sie ENTER...\t");
                     while (getchar() != '\n') {}
                     getchar();
@@ -180,23 +185,26 @@ int8_t data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES 
         /*------------------------------------------------------------------------------------------------*/
 
         case 6:     // PRINT LIST OF ALL CUSTOMERS
-            printf("\n");
+
             for (int32_t i = 0; i < customer_index; i+=CHART_PAGE_MAX) {
-                for (int j = 0; j < CHART_PAGE_MAX; j++) {
-                    printf("| %10lu ", customer_database[j].id);
-                }   printf("\n");
+                clrscr();
+                printf("%s","**********************\n* WWS Kundenausgabe *\n**********************\n");
 
-                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
-                    printf("| %10s ", customer_database[j].first_name);
-                }   printf("\n");
+                for (int j = 0+i; j < CHART_PAGE_MAX+i; j++) {
+                    printf("| %15lu ", customer_database[j].id);
+                }   printf("|\n");
 
-                for (int32_t j = 0; j < CHART_PAGE_MAX; j++) {
-                    printf("| %10s ", customer_database[j].last_name);
-                }   printf("\n");
+                for (int32_t j = 0+i; j < CHART_PAGE_MAX+i; j++) {
+                    printf("| %15s ", customer_database[j].first_name);
+                }   printf("|\n");
 
-                printf("\nSeite %d von %d\n", i, (int32_t)round(product_index / CHART_PAGE_MAX+1));
+                for (int32_t j = 0+i; j < CHART_PAGE_MAX+i; j++) {
+                    printf("| %15s ", customer_database[j].last_name);
+                }   printf("|\n");
 
-                if (product_index > CHART_PAGE_MAX) {
+                printf("\nSeite %d von %d\n", i / CHART_PAGE_MAX, (int32_t)(customer_index / page_check));
+
+                if (i+CHART_PAGE_MAX < customer_index) {
                     printf("\nDrücken Sie ENTER...\t");
                     while (getchar() != '\n') {}
                     getchar();
@@ -207,7 +215,6 @@ int8_t data_handler(const int32_t id_argument) {      // HANDLES DATA, MODIFIES 
         /*------------------------------------------------------------------------------------------------*/
 
         default:    // EVALUATE INPUT AGAIN
-            init();
             break;
         /*------------------------------------------------------------------------------------------------*/
     }

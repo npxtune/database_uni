@@ -69,8 +69,6 @@ void eval_input(const int32_t id_argument) {   // EVALUATE USER INPUT AND CALL F
         /*------------------------------------------------------------------------------------------------*/
 
         case 5: // PRINT LIST OF PRODUCTS
-            clrscr();
-            printf("%s","**********************\n* WWS Produktausgabe *\n**********************\n");
 
             data_handler(id_argument);
             printf("\n\nDrücken Sie ENTER...\t");
@@ -81,8 +79,6 @@ void eval_input(const int32_t id_argument) {   // EVALUATE USER INPUT AND CALL F
         /*------------------------------------------------------------------------------------------------*/
 
         case 6: // PRINT LIST OF CUSTOMERS
-            clrscr();
-            printf("%s","**********************\n* WWS Kundenausgabe *\n**********************\n");
         
             data_handler(id_argument);
             printf("\n\nDrücken Sie ENTER...\t");
